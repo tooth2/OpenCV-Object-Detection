@@ -33,6 +33,16 @@ A single corner will not be enough to identify an object in any other images, bu
 
 > Binary and HOG descriptors all rely on patterns of intensity to identify different shapes (like edges) and eventually whole objects (with feature vectors).
 
+3. BF_Matcher (Brute-force descriptor matcher)
+For each descriptor in the first set, this matcher finds the closest descriptor in the second set by trying each one.
+* normType:
+    * SIFT: `cv::NORM_L2`
+    * ORB, BRISK and BRIEF : `cv::NORM_HAMMING`
+    * ORB when `WTA_K==3 or 4`: `cv::NORM_HAMMING` (see ORB::ORB constructor description).
+* crossCheck:	
+    * default, false:  BFMatcher default behaviour when it finds the k nearest neighbors for each query descriptor.
+    * crossCheck==true : the knnMatch() method with k=1 will only return pairs (i,j) such that for i-th query descriptor the j-th descriptor in the matcher's collection is the nearest and vice versa, i.e. the BFMatcher will only return consistent pairs to produce best results with minimal number of outliers when there are enough matches. This is alternative to the ratio test, used by D. Lowe in SIFT paper.
+
 Note that, OpenCV reads in images in BGR format (instead of RGB) so that color converting process is needed for example,
 `cv2.cvtColor(image, cv2.COLOR_BGR2GRAY). ## convert color to Gray scale`
 
