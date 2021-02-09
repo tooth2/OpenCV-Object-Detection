@@ -1,4 +1,4 @@
-# ORB-Object-Detection
+# OpenCV-Object-Detection
 
 Implemented various Object-Detection Algorithm in Open CV 2D Features framework.
 
