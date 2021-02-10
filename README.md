@@ -33,8 +33,9 @@ A single corner will not be enough to identify an object in any other images, bu
 
 > Binary and HOG descriptors all rely on patterns of intensity to identify different shapes (like edges) and eventually whole objects (with feature vectors).
 
-3. BF_Matcher (Brute-force descriptor matcher)
+3. BF_Matcher (Brute-force descriptor matcher) `cv::BFMatcher`
 For each descriptor in the first set, this matcher finds the closest descriptor in the second set by trying each one.
+`cv::BFMatcher::create	(normType, crossCheck = false)` 	
 * normType:
     * SIFT: `cv::NORM_L2`
     * ORB, BRISK and BRIEF : `cv::NORM_HAMMING`
@@ -42,6 +43,13 @@ For each descriptor in the first set, this matcher finds the closest descriptor 
 * crossCheck:	
     * default, false:  BFMatcher default behaviour when it finds the k nearest neighbors for each query descriptor.
     * crossCheck==true : the knnMatch() method with k=1 will only return pairs (i,j) such that for i-th query descriptor the j-th descriptor in the matcher's collection is the nearest and vice versa, i.e. the BFMatcher will only return consistent pairs to produce best results with minimal number of outliers when there are enough matches. This is alternative to the ratio test, used by D. Lowe in SIFT paper.
+
+* `cv::DMatch`
+ As a result of BFMatcher.match(), a list of DMatch objects is produced. 
+    * Class for matching keypoint descriptors.
+    * attributes: query descriptor index, train descriptor index, train image index, and distance between descriptors.
+    * descriptor: A descriptor can be real-valued (e.g. SIFT) or binary (e.g. BRIEF).  The descriptors of both the images are matched to find matching key points between the images by BFMatcher -> match(), knnMatch() or FlannBasedMatcher -> knnMatch(). When matching, a pair of descriptors (train descriptor and query descriptor) is matched from each image, which are the most similar among all of the descriptors. 
+    * distance attribute: distance between two descriptors(vectors) of a match. For real-valued descriptors(SIFT or SURF), the Euclidean distance is  used, but the Hamming distance is common for binary descriptors (ORB, BRIEF, BRISK, etc).
 
 Note that, OpenCV reads in images in BGR format (instead of RGB) so that color converting process is needed for example,
 `cv2.cvtColor(image, cv2.COLOR_BGR2GRAY). ## convert color to Gray scale`
