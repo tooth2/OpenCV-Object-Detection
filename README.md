@@ -17,7 +17,11 @@ main properties of the object detection algithms are tested in the following use
 A single corner will not be enough to identify an object in any other images, but, we can take a set of features that define the shape of the object, group them together into an array or vector, and then use that set of features to create a specific detector.
 
 * Shi-Tomasi corner detector 
-* Harris corner detection 
+* Harris corner detection : Chris Harris & Mike Stephens in their paper A Combined Corner and Edge Detector in 1988. OpenCV has the function cv.cornerHarris() for this purpose. Its arguments are:  
+    * img - Input image (grayscale , float32 type)
+    * blockSize - the size of neighbourhood considered for corner detection
+    * ksize - Aperture parameter of the Sobel derivative used.
+    * k - Harris detector free parameter in the equation.
 * FAST(Feature accelerated Segments Test)
 * BRISK
 * ORB(ORiented Fast Rotated Brief)
