@@ -22,7 +22,9 @@ A single corner will not be enough to identify an object in any other images, bu
     * blockSize - the size of neighbourhood considered for corner detection
     * ksize - Aperture parameter of the Sobel derivative used.
     * k - Harris detector free parameter in the equation.
-* FAST(Feature accelerated Segments Test)
+* FAST(Feature accelerated Segments Test): FAST (Features from Accelerated Segment Test) algorithm was proposed by Edward Rosten and Tom Drummond in their paper "Machine learning for high-speed corner detection" in 2006 (Later revised it in 2010). 
+    * It is several times faster than other existing corner detectors.
+    * But not robust to high levels of noise. It is dependent on a threshold
 * BRISK
 * ORB(ORiented Fast Rotated Brief)
 * KAZE, AKAZE 
