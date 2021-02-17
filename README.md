@@ -25,19 +25,19 @@ A single corner will not be enough to identify an object in any other images, bu
 * FAST(Feature accelerated Segments Test): FAST (Features from Accelerated Segment Test) algorithm was proposed by Edward Rosten and Tom Drummond in their paper "Machine learning for high-speed corner detection" in 2006 (Later revised it in 2010). 
     * It is several times faster than other existing corner detectors.
     * But not robust to high levels of noise. It is dependent on a threshold
-* BRISK
+* BRISK(Binary Robust Invariant Scalable Keypoints)
 * ORB(ORiented Fast Rotated Brief)
 * KAZE, AKAZE 
 
 2. Keypoint Descriptors
-* BRISK 
-* BRIEF
-* ORB(ORiented Fast Rotated Brief) 
-* FREAK(Binary Robust Independent Elementary Features)
-* AKAZE 
+* BRISK(Binary Robust Invariant Scalable Keypoints): BRISK is equipped with a mechanism for orientation compensation; the orientation of the keypoint and rotation the sampling pattern by that orientation, BRISK becomes somewhat invariant to rotation. 
+* BRIEF(Binary Robust Independent Elementary Features): in 2010, BRIEF was introduced as the first binary descriptor. It does not have an elaborate sampling pattern or an orientation compensation mechanism,  BRIEF takes only the information at single pixels location to build the descriptor.
+* ORB(ORiented Fast Rotated Brief) : The ORB descriptor is a bit similar to BRIEF. It doesn’t have an elaborate sampling pattern as BRISK or FREAK. However, ORB uses an orientation compensation mechanism, making it rotation invariant.
+* FREAK(The Fast REtina Keypoint): FREAK is similar to BRISK by having a handcrafter sampling pattern and also similar to ORB by using unsupervised learning techniques to learn the optimal set of sampling pairs. FREAK also has an orientation mechanism that is similar to that of BRISK.
+* AKAZE(Accelerated KAZE (A-KAZE): A-KAZE uses the A-KAZE detector’s estimation of patch scale to sub-sample the grid in steps that are a function of the patch scale.
 * SIFT : HOG(Histograms of Oriented Gradients) family descriptor 
 
-> Binary and HOG descriptors all rely on patterns of intensity to identify different shapes (like edges) and eventually whole objects (with feature vectors).
+> Binary and HOG descriptors all rely on patterns of intensity to identify different shapes (like edges) and eventually whole objects with feature vectors. Hog Family descriptors such as SIFT and SURF are based on histograms of gradients. Thus the gradients of each pixel in the patch need some amunt of computational cost. Even though SURF speeds up the computation using integral imags, this still isn’t fast enough for some applications compared to Binary descriptors. Also, SIFT and SURF are patent-protected. 
 
 3. BF_Matcher (Brute-force descriptor matcher) `cv::BFMatcher`
 For each descriptor in the first set, this matcher finds the closest descriptor in the second set by trying each one.
