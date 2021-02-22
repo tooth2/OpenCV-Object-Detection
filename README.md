@@ -15,7 +15,7 @@ main properties of the object detection algithms are tested in the following use
  
 1. Corner Detectors 
 A single corner will not be enough to identify an object in any other images, but, we can take a set of features that define the shape of the object, group them together into an array or vector, and then use that set of features to create a specific detector.
-
+Harris Corner Detector is a corner detection operator that is commonly used in computer vision algorithms to extract corners and infer features of an image. It was first introduced by Chris Harris and Mike Stephens in 1988 upon the improvement of Moravec’s corner detector. Compared to the previous one, Harris’ corner detector takes the differential of the corner score into account with reference to direction directly, instead of using shifting patches for every 45-degree angles, and has been proved to be more accurate in distinguishing between edges and corners. Since then, it has been improved and adopted in many algorithms to preprocess images for subsequent applications.
 * Shi-Tomasi corner detector 
 * Harris corner detection : Chris Harris & Mike Stephens in their paper A Combined Corner and Edge Detector in 1988. OpenCV has the function cv.cornerHarris() for this purpose. Its arguments are:  
     * img - Input image (grayscale , float32 type)
@@ -61,4 +61,5 @@ Note that, OpenCV reads in images in BGR format (instead of RGB) so that color c
 `cv2.cvtColor(image, cv2.COLOR_BGR2GRAY). ## convert color to Gray scale`
 
 ### Reference
-[OpenCV 2D Features framework](https://docs.opencv.org/master/d9/d97/tutorial_table_of_content_features2d.html)
+* [OpenCV 2D Features framework](https://docs.opencv.org/master/d9/d97/tutorial_table_of_content_features2d.html)
+* [OpenCV in Robotics](https://www.intorobotics.com/how-to-detect-and-track-object-with-opencv/)
